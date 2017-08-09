@@ -11,8 +11,9 @@ RSpec.describe ArticlesController, type: :controller do
 
   describe "GET #show" do
     it "returns http success" do
-      get :show
-      expect(response).to have_http_status(:success)
+      article = create(:article)
+      get :show, {:id => article.id}
+      expect(response).to be_success
     end
   end
 
@@ -25,22 +26,20 @@ RSpec.describe ArticlesController, type: :controller do
 
   describe "GET #edit" do
     it "returns http success" do
-      get :edit
+      article = create(:article)
+      get :edit, {:id => article.id}
       expect(response).to have_http_status(:success)
     end
   end
 
-  describe "when update" do
-    it "should update the article" do
+  describe "POST #create" do
+    it "should create the article" do
+      article = create(:article)
 
+      post :create, article: { title: article.title, body: article.body }
+
+      expect(response).to redirect_to(Article.last)
+      expect(flash[:notice]).to match(/^Article was successfully created./)
     end
-  end
-
-  describe "when destroy" do
-
-  end
-
-  describe "when create" do
-    
   end
 end
