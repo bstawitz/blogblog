@@ -1,3 +1,4 @@
-<% @articles.each do |article| %>
-  <%= article.body %>
-<% end %>
+
+<h1>Welcome to Blog Blog</h1>
+
+<%= render partial: "article", collection: @articles %>

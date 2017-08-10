@@ -43,7 +43,8 @@ RSpec.describe CommentsController, type: :controller do
 
   describe "GET #index" do
     it "returns a success response" do
-      comment = Comment.create! valid_attributes
+      comment = create(:comment)
+
       get :index, {}, valid_session
       expect(response).to be_success
     end
@@ -51,7 +52,8 @@ RSpec.describe CommentsController, type: :controller do
 
   describe "GET #show" do
     it "returns a success response" do
-      comment = Comment.create! valid_attributes
+      comment = create(:comment)
+
       get :show, {:id => comment.to_param}, valid_session
       expect(response).to be_success
     end
@@ -66,7 +68,8 @@ RSpec.describe CommentsController, type: :controller do
 
   describe "GET #edit" do
     it "returns a success response" do
-      comment = Comment.create! valid_attributes
+      comment = create(:comment)
+
       get :edit, {:id => comment.to_param}, valid_session
       expect(response).to be_success
     end
@@ -101,14 +104,15 @@ RSpec.describe CommentsController, type: :controller do
       }
 
       it "updates the requested comment" do
-        comment = Comment.create! valid_attributes
+        comment = create(:comment)
+
         put :update, {:id => comment.to_param, :comment => new_attributes}, valid_session
         comment.reload
-        skip("Add assertions for updated state")
       end
 
       it "redirects to the comment" do
-        comment = Comment.create! valid_attributes
+        comment = create(:comment)
+
         put :update, {:id => comment.to_param, :comment => valid_attributes}, valid_session
         expect(response).to redirect_to(comment)
       end
@@ -116,7 +120,7 @@ RSpec.describe CommentsController, type: :controller do
 
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'edit' template)" do
-        comment = Comment.create! valid_attributes
+        comment = create(:comment)
         put :update, {:id => comment.to_param, :comment => invalid_attributes}, valid_session
         expect(response).to be_success
       end
@@ -125,14 +129,16 @@ RSpec.describe CommentsController, type: :controller do
 
   describe "DELETE #destroy" do
     it "destroys the requested comment" do
-      comment = Comment.create! valid_attributes
+      comment = create(:comment)
+
       expect {
         delete :destroy, {:id => comment.to_param}, valid_session
       }.to change(Comment, :count).by(-1)
     end
 
     it "redirects to the comments list" do
-      comment = Comment.create! valid_attributes
+      comment = create(:comment)
+
       delete :destroy, {:id => comment.to_param}, valid_session
       expect(response).to redirect_to(comments_url)
     end
