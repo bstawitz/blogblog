@@ -6,7 +6,7 @@
         <small><%= article.created_at.strftime("Published on %d.%m.%Y") %></small>
       </h2>
       <p>
-        <%= article.body %>
+        <%= simple_format article.body %>
       </p>
     </div>
   </div>
