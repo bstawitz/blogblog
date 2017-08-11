@@ -15,7 +15,5 @@ Maecenas imperdiet eleifend sapien, quis ultricies lorem auctor vulputate. Nunc 
 Etiam eget nibh vel ipsum vulputate vestibulum id sit amet velit. Sed id magna neque. Sed venenatis felis purus, quis dignissim odio ultricies non. Aliquam fringilla nisl vel arcu elementum porta. Cras at tellus lobortis, venenatis nulla vitae, lobortis nisi. Fusce sit amet faucibus ex, ac pharetra risus. Mauris quis enim eget risus dignissim dapibus eget et dolor. Fusce ipsum sapien, bibendum semper placerat eu, aliquet eget ex.
 
 Duis elementum est id fringilla vulputate. Nunc venenatis purus ligula, eget varius sem viverra ut. Suspendisse vel arcu commodo, rutrum arcu non, pellentesque quam. Fusce id mauris vel mi venenatis elementum. Suspendisse in massa id ipsum lobortis dignissim. In erat ipsum, volutpat ut consectetur eu, dapibus eget enim. Donec luctus massa non ipsum lobortis laoreet. Praesent aliquet urna ante, vel feugiat nisl lobortis id. Suspendisse potenti. Curabitur convallis feugiat nulla, ac blandit odio aliquet eu. Sed gravida vel nunc ac maximus. Phasellus mattis facilisis ante, sed condimentum augue tristique vel. Integer posuere, ante non porta ornare, justo ex ultricies leo, in dapibus dui ligula quis lorem. Vestibulum bibendum, quam mattis eleifend mattis, dolor sapien ullamcorper elit, et egestas odio tellus non dolor. Etiam varius, dui sit amet scelerisque lobortis, justo sem euismod sapien, at finibus erat ligula hendrerit ante.")
-  7.times do
-    article.comments.create(body: "Hey, this article is great!")
-  end
+  article.comments.create(body: "Hey, this article is great!")
 end

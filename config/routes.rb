@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   resources :comments
   resources :articles
 
+  post "/create_article_comment" => "articles#create_article_comment", as: :create_article_comment
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

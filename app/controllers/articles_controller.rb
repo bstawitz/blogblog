@@ -35,6 +35,20 @@ class ArticlesController < ApplicationController
 
   end
 
+  def create_article_comment
+    @article = Article.find(params[:comment][:article_id])
+    @comments = @article.comments
+    @comment = @comments.new(comment_params)
+
+    respond_to do |format|
+      if @comment.save
+        format.html { redirect_to @article, notice: 'Comment was created' }
+      else
+        format.html { render :show }
+      end
+    end
+  end
+
   def destroy
 
   end
@@ -44,5 +58,9 @@ class ArticlesController < ApplicationController
 
   def article_params
     params.require(:article).permit(:body, :title)
+  end
+
+  def comment_params
+    params.require(:comment).permit(:body, :article_id)
   end
 end

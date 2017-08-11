@@ -32,6 +32,16 @@ RSpec.describe ArticlesController, type: :controller do
     end
   end
 
+  describe "Post #ajax_create_article_comment" do
+    it "should create the comment" do
+      comment = create(:comment)
+      params = { comment: {article_id: comment.article_id}, comment_params: {body: comment.body, article_id: comment.article_id}}
+      post :create_article_comment, params
+
+      expect(response).to be_success
+    end
+  end
+
   describe "POST #create" do
     it "should create the article" do
       article = create(:article)
