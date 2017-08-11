@@ -15,4 +15,5 @@ RSpec.describe "articles/new.html.erb", type: :view do
     expect(rendered).to match(/article_title/)
     expect(rendered).to match(/article_body/)
   end
+
 end
