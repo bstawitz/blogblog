@@ -44,7 +44,7 @@ class ArticlesController < ApplicationController
       if @comment.save
         format.html { redirect_to @article, notice: 'Comment was created' }
       else
-        format.html { render :show }
+        format.html { redirect_to @article, alert: 'Comment has errors' }
       end
     end
   end

@@ -32,18 +32,46 @@ RSpec.describe ArticlesController, type: :controller do
     end
   end
 
-  describe "Post #ajax_create_article_comment" do
-    it "should create the comment" do
+  describe "Post #create_article_comment" do
+    it "should create a comment" do
       comment = create(:comment)
-      params = { comment: {article_id: comment.article_id}, comment_params: {body: comment.body, article_id: comment.article_id}}
+      params = { comment: {article_id: comment.article.id, body: comment.body}}
+
+      expect {
+        post :create_article_comment, params
+      }.to change(Comment, :count).by(1)
+    end
+
+    it "should redirect to the article with notice" do
+      comment = create(:comment)
+      params = { comment: {article_id: comment.article.id, body: comment.body}}
+
       post :create_article_comment, params
 
-      expect(response).to be_success
+      expect(response).to redirect_to(article_path(comment.article_id))
+      expect(flash[:notice]).to match(/^Comment was created/)
+    end
+
+    it "should redirect to the article with error notice" do
+      comment = create(:comment)
+      params = { comment: {article_id: comment.article.id, body: "test"}}
+
+      post :create_article_comment, params
+
+      expect(response).to redirect_to(article_path(comment.article_id))
+      expect(flash[:alert]).to match(/^Comment has errors/)
     end
   end
 
   describe "POST #create" do
-    it "should create the article" do
+    it "should create a comment" do
+      article = create(:article)
+      params = { article: {title: article.title, body: article.body}}
+
+      expect { post :create, params }.to change(Article, :count).by(1)
+    end
+
+    it "should should the newly created article" do
       article = create(:article)
 
       post :create, article: { title: article.title, body: article.body }

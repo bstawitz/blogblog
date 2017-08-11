@@ -50,15 +50,6 @@ RSpec.describe CommentsController, type: :controller do
     end
   end
 
-  describe "GET #show" do
-    it "returns a success response" do
-      comment = create(:comment)
-
-      get :show, {:id => comment.to_param}, valid_session
-      expect(response).to be_success
-    end
-  end
-
   describe "GET #new" do
     it "returns a success response" do
       get :new, {}, valid_session
@@ -66,12 +57,14 @@ RSpec.describe CommentsController, type: :controller do
     end
   end
 
-  describe "GET #edit" do
-    it "returns a success response" do
-      comment = create(:comment)
+  %w( edit show ).each do |action|
+    describe "GET ##{action}" do
+      it "returns a success response" do
+        comment = create(:comment)
 
-      get :edit, {:id => comment.to_param}, valid_session
-      expect(response).to be_success
+        get action.to_sym, {:id => comment.to_param}, valid_session
+        expect(response).to be_success
+      end
     end
   end
 
